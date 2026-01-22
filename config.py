@@ -29,7 +29,13 @@ class Config:
     """
     
     # === 自选股配置 ===
-    stock_list: List[str] = field(default_factory=list)
+    stock_list: List[str] = field(default_factory=lambda: [
+    "603757",
+    "600515",
+    "605318",
+    "002429",
+    "601778",
+    ])
 
     # === 飞书云文档配置 ===
     feishu_app_id: Optional[str] = None
@@ -40,7 +46,7 @@ class Config:
     tushare_token: Optional[str] = None
     
     # === AI 分析配置 ===
-    gemini_api_key: Optional[str] = None
+    gemini_api_key: str = "AIzaSyAwjDnpvd8-7NksYPOZfO46zJah3X17mwk"
     gemini_model: str = "gemini-3-flash-preview"  # 主模型
     gemini_model_fallback: str = "gemini-2.5-flash"  # 备选模型
     
@@ -50,19 +56,19 @@ class Config:
     gemini_retry_delay: float = 5.0  # 重试基础延时（秒）
     
     # OpenAI 兼容 API（备选，当 Gemini 不可用时使用）
-    openai_api_key: Optional[str] = None
-    openai_base_url: Optional[str] = None  # 如: https://api.openai.com/v1
-    openai_model: str = "gpt-4o-mini"  # OpenAI 兼容模型名称
+    openai_api_key: str = "sk-5f95628463734b649e85d8e12103638d"
+    openai_base_url: str = "https://api.deepseek.com"
+    openai_model: str = "deepseek-chat" 
     
     # === 搜索引擎配置（支持多 Key 负载均衡）===
     bocha_api_keys: List[str] = field(default_factory=list)  # Bocha API Keys
-    tavily_api_keys: List[str] = field(default_factory=list)  # Tavily API Keys
+    tavily_api_keys: List[str] = field(default_factory=lambda: ["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",])  # Tavily API Keys
     serpapi_keys: List[str] = field(default_factory=list)  # SerpAPI Keys
     
     # === 通知配置（可同时配置多个，全部推送）===
     
     # 企业微信 Webhook
-    wechat_webhook_url: Optional[str] = None
+    wechat_webhook_url: str = "https://qyapi.weixin.qq.com/cgi-bin/webhook/send?key=78cac5ff-88cb-4967-a3b5-025474d7462f"
     
     # 飞书 Webhook
     feishu_webhook_url: Optional[str] = None
